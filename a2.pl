@@ -4,7 +4,7 @@
 :- set_prolog_stack(local,  limit(2 000 000)).  % limit environment space
 
 % Your program goes here
-                    
+
 /** <examples> Your example queries go here, e.g.
 ?- member(X, [cat, mouse]).
 */
@@ -32,7 +32,8 @@ solution([StartCity],RoadNetwork,SolutionCost,SolutionPath) :-
     recursiveDFS(StartCity,RoadNetwork,SolutionCost,SolutionPath).
 recursiveDFS(StartCity,RoadNetwork,0,[StartCity]).
 recursiveDFS(StartCity,RoadNetwork,SolutionCost,SolutionPath) :-
-    append(PrevSolutionPath,[PreviousNode,CurrentNode],SolutionPath),
+    append(PrevSolutionPath,[CurrentNode],SolutionPath),
+    append(_,[PreviousNode],PrevSolutionPath),
     road(PreviousNode,CurrentNode,Cost,RoadNetwork),
-    PreviousSolutionCost = SolutionCost-Cost,
-    recursiveDFS(StartCity,RoadNetwork,PreviousSolutionCost,[PrevSolutionPath|PreviousNode]).
+    PreviousSolutionCost = SolutionCost,
+    recursiveDFS(StartCity,RoadNetwork,PreviousSolutionCost,PrevSolutionPath).
