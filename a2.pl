@@ -35,4 +35,4 @@ recursiveDFS(StartCity,RoadNetwork,SolutionCost,SolutionPath) :-
     append(PrevSolutionPath,[PreviousNode,CurrentNode],SolutionPath),
     road(PreviousNode,CurrentNode,Cost,RoadNetwork),
     PreviousSolutionCost = SolutionCost-Cost,
-    recursiveDFS(StartCity,RoadNetwork,PreviousSolutionCost,PrevSolutionPath).
+    recursiveDFS(StartCity,RoadNetwork,PreviousSolutionCost,[PrevSolutionPath|PreviousNode]).
