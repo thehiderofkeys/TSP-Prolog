@@ -10,7 +10,7 @@
 */
 road(A,B,Cost,Network) :-
     A == B,
-    Cost = 0,
+    Cost == 0,
     Network = Network.
 road(A,B,Cost,Network) :-
 	member((A,X),Network),
@@ -35,5 +35,5 @@ recursiveDFS(StartCity,RoadNetwork,SolutionCost,SolutionPath) :-
     append(PrevSolutionPath,[CurrentNode],SolutionPath),
     append(_,[PreviousNode],PrevSolutionPath),
     road(PreviousNode,CurrentNode,Cost,RoadNetwork),
-    PreviousSolutionCost = SolutionCost,
+    PreviousSolutionCost == SolutionCost-Cost,
     recursiveDFS(StartCity,RoadNetwork,PreviousSolutionCost,PrevSolutionPath).
